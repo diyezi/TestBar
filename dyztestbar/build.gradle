@@ -5,13 +5,10 @@ plugins {
 
 android {
     compileSdkVersion 32
-    buildToolsVersion "32.0.0"
 
     defaultConfig {
         minSdkVersion 26
         targetSdkVersion 32
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -34,7 +31,7 @@ android {
     // configure your publications using the afterEvaluate() lifecycle method.
     // 由于组件仅在后Evaluate阶段创建，因此必须
     // 使用afterEvaluate（）生命周期方法配置发布。
-    afterEvaluate {
+    /*afterEvaluate {
         publishing {
             publications {
                 // Creates a Maven publication called "release".
@@ -63,14 +60,14 @@ android {
                 }
             }
         }
-    }
+    }*/
 }
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
-    testImplementation 'junit:junit:4.+'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
