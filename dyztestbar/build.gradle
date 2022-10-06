@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+android {
+    compileSdkVersion 32
+    buildToolsVersion "32.0.0"
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // link1 | 链接1 : https://developer.android.com/studio/build/maven-publish-plugin
+    // link2 | 链接2 : https://docs.jitpack.io/android
+    // Because the components are created only during the afterEvaluate phase, you must
+    // configure your publications using the afterEvaluate() lifecycle method.
+    // 由于组件仅在后Evaluate阶段创建，因此必须
+    // 使用afterEvaluate（）生命周期方法配置发布。
+    afterEvaluate {
+        publishing {
+            publications {
+                // Creates a Maven publication called "release".
+                // 创建一个名为“release”的Maven发布。
+                release(MavenPublication) {
+                    // Applies the component for the release build variant.
+                    // 将组件应用于发布版本变体。
+                    from components.release
+
+                    // You can then customize attributes of the publication as shown below.
+                    // 然后，您可以自定义发布的属性，如下所示。
+                    groupId = 'com.xwrl.custom'
+                    artifactId = 'dyztestbar'
+                    version = '1.0'
+                }
+                // Creates a Maven publication called “debug”.
+                // 创建名为“debug”的Maven发布。
+                debug(MavenPublication) {
+                    // Applies the component for the debug build variant.
+                    // 将组件应用于调试版本变体。
+                    from components.debug
+
+                    groupId = 'com.xwrl.custom'
+                    artifactId = 'dyztestbar-debug'
+                    version = '1.0'
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}

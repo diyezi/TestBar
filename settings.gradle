@@ -1,0 +1,3 @@
+rootProject.name = "TestBar"
+include ':app'
+include ':dyztestbar'
